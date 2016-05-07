@@ -1,7 +1,9 @@
 (ns clj-kmp-text-search.core)
 
 (defn backtrack-score ([s i]
-    (backtrack-score (seq s) (drop i (seq s)) 0))
+    (if (or (= 0 i) (= 1 i))
+        0
+        (backtrack-score (seq s) (drop i (seq s)) 0)))
     ([prefix_chars suffix_chars score]
         (let [_ (str prefix_chars " " suffix_chars "" score)]
         (if (empty? suffix_chars)
