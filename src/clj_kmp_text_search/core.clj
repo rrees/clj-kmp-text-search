@@ -21,7 +21,7 @@
 
 (defn kmp-search ([^String s ^String target]
         (kmp-search [s target] (backtrack-table s) 0 0))
-        ([strings table ^Long m ^Long i]
+        ([strings ^longs table ^Long m ^long i]
             (let [
                 [^String s ^String target] strings
                 s-size (.length s)
