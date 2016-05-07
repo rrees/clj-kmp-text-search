@@ -3,8 +3,8 @@
 (defn backtrack-score ([s i]
     (backtrack-score (seq s) (drop i (seq s)) 0))
     ([prefix_chars suffix_chars score]
-        (let [_ (println (str prefix_chars " " suffix_chars "" score))]
-        (if (empty? prefix_chars)
+        (let [_ (str prefix_chars " " suffix_chars "" score)]
+        (if (empty? suffix_chars)
             score
             (if (= (first prefix_chars) (first suffix_chars))
                 (recur (rest prefix_chars) (rest suffix_chars) (inc score))

@@ -6,4 +6,6 @@
     (testing "Non-matching prefixes"
         (is (= 0 (backtrack-score "ab" 1))))
     (testing "Matching prefixes"
-        (is (= 2 (backtrack-score "pabpac" 3)))))
+        (is (= 2 (backtrack-score "pabpac" 3))))
+    (testing "String overflow"
+        (is (= 1 (backtrack-score "papp" 3)))))
