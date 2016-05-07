@@ -39,6 +39,14 @@
                                 (recur [s target] table (+ m i 1) 0)
                                 (recur [s target] table (- (+ m i) backtrack) 0)))))))
 
+(defn read-input []
+    (let [in (slurp *in*)
+      lines (clojure.string/split in #"\s")
+      pairs (partition 2 (rest lines))
+      search-results (map (fn [[^String s ^String t]] (kmp-search s t)) pairs)
+      text-output (map (fn [^long result] (if (= result -1) "NO" "YES")) search-results)]
+      (doall (map println text-output))))
+
 (defn foo
   "I don't do a whole lot."
   [x]
