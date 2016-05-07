@@ -18,6 +18,24 @@
                     (recur s (conj t 0) last-match-idx 0)
                     (recur s (conj t 0) 0 0)))))))
 
+(defn kmp-search ([s target]
+        (kmp-search s target (backtrack-table s) 0 0))
+        ([s target table m i]
+            (let [s-size (.length s)
+                    current-offset (+ m i)]
+                (cond
+                    (> current-offset s-size)
+                        -1
+                    (= (.charAt target i) (.charAt s current-offset))
+                        (if (= (inc i) (.length target))
+                            m
+                            (recur s target table m (inc i)))
+                    :else
+                        (let [backtrack (get table i)]
+                            (if (= i 0)
+                                (recur s target table (+ m i 1) 0)
+                                (recur s target table (- (+ m i) backtrack) 0)))))))
+
 (defn foo
   "I don't do a whole lot."
   [x]

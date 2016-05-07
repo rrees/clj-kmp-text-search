@@ -12,3 +12,7 @@
     (testing "Example strings from Wikipedia"
         (is (= [0 0 0 0 0 1 2] (backtrack-table "abcdabd")))
         (is (= [0 0 0 0 0 0 0 0 1 2 0 0 0 0 0 0 1 2 3 0 0 0 0 0] (backtrack-table "participate in parachute")))))
+
+(deftest test-search
+    (testing "Matches"
+        (is (= 0 (kmp-search "joe" "joe")))))
