@@ -19,8 +19,10 @@
                     (recur s (conj t 0) last-match-idx 0)
                     (recur s (conj t 0) 0 0)))))))
 
+(def memoized-backtrack-table (memoize backtrack-table))
+
 (defn kmp-search ([^String s ^String target]
-        (kmp-search [s target] (backtrack-table s) 0 0))
+        (kmp-search [s target] (memoized-backtrack-table s) 0 0))
         ([strings ^longs table ^Long m ^long i]
             (let [
                 [^String s ^String target] strings
