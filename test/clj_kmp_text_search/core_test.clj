@@ -2,14 +2,13 @@
   (:require [clojure.test :refer :all]
             [clj-kmp-text-search.core :refer :all]))
 
-(deftest test-backtrack-score
-    (testing "Non-matching prefixes"
-        (is (= 0 (backtrack-score "ab" 1))))
-    (testing "Matching prefixes"
-        (is (= 2 (backtrack-score "pabpac" 3))))
-    (testing "String overflow"
-        (is (= 1 (backtrack-score "papp" 3))))
-    (testing "Small strings"
-        (is (= 0 (backtrack-score "a" 0)))
-        (is (= 0 (backtrack-score "ab" 0)))
-        (is (= 0 (backtrack-score "ab" 1)))))
+(deftest test-backtrack-table
+    (testing "Increasing matching strings"
+        (is (= [0 0 0] (backtrack-table "aba")))
+        (is (= [0 0 0 1] (backtrack-table "abab")))
+        (is (= [0 0 0 1 2] (backtrack-table "ababa")))
+        (is (= [0 0 0 0 0 1 2] (backtrack-table "abcdabd"))
+        (is (= [0 0  0 1 2 3] (backtrack-table "ababac")))))
+    (testing "Example strings from Wikipedia"
+        (is (= [0 0 0 0 0 1 2] (backtrack-table "abcdabd")))
+        (is (= [0 0 0 0 0 0 0 0 1 2 0 0 0 0 0 0 1 2 3 0 0 0 0 0] (backtrack-table "participate in parachute")))))
