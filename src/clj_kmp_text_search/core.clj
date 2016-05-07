@@ -7,7 +7,7 @@
             (= 1 str-length) [0]
             (= 2 str-length) [0 0]
             :else (backtrack-table s [0 0] 0 0))))
-    ([s t last-match-idx score]
+    ([^String s ^String ^longs t ^long last-match-idx ^long score]
         (let [table-size (count t)
             str-length (.length s)]
         (if (= table-size str-length)
