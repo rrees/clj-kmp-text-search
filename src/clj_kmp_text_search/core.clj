@@ -9,11 +9,12 @@
             :else (backtrack-table s [0 0] 0 0))))
     ([^String s ^String ^longs t ^long last-match-idx ^long score]
         (let [table-size (count t)
-            str-length (.length s)]
+            str-length (.length s)
+            next-score (inc score)]
         (if (= table-size str-length)
             t
             (if (= (.charAt s last-match-idx) (.charAt s (dec table-size)))
-                (recur s (conj t (inc score)) (inc last-match-idx) (inc score))
+                (recur s (conj t next-score) (inc last-match-idx) next-score)
                 (if (> score 0)
                     (recur s (conj t 0) last-match-idx 0)
                     (recur s (conj t 0) 0 0)))))))
