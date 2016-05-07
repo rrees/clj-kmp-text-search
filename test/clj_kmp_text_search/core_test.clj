@@ -15,6 +15,7 @@
 
 (deftest test-search
     (testing "Matches"
-        (is (= 0 (kmp-search "joe" "joe"))))
+        (is (= 0 (kmp-search "joe" "joe"))
+        (is (= 5 (kmp-search "fast joe" "joe")))))
     (testing "Non-matches"
         (is (= -1 (kmp-search "eric" "joe")))))

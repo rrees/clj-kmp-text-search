@@ -24,7 +24,7 @@
             (let [s-size (.length s)
                     current-offset (+ m i)]
                 (cond
-                    (> current-offset s-size)
+                    (> (inc current-offset) s-size)
                         -1
                     (= (.charAt target i) (.charAt s current-offset))
                         (if (= (inc i) (.length target))
