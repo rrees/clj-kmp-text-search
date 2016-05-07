@@ -18,4 +18,6 @@
         (is (= 0 (kmp-search "joe" "joe"))
         (is (= 5 (kmp-search "fast joe" "joe")))))
     (testing "Non-matches"
-        (is (= -1 (kmp-search "eric" "joe")))))
+        (is (= -1 (kmp-search "eric" "joe"))))
+    (testing "Back tracking"
+        (is (= 10 (kmp-search "jo joanna joe jolene" "joe")))))
