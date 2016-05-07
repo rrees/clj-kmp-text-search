@@ -2,6 +2,8 @@
   (:require [clojure.test :refer :all]
             [clj-kmp-text-search.core :refer :all]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(deftest test-backtrack-score
+    (testing "Non-matching prefixes"
+        (is (= 0 (backtrack-score "ab" 1))))
+    (testing "Matching prefixes"
+        (is (= 2 (backtrack-score "pabpac" 3)))))
