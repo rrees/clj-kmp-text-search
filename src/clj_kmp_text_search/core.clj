@@ -1,6 +1,6 @@
 (ns clj-kmp-text-search.core)
 
-(defn backtrack-table ([s]
+(defn backtrack-table ([^String s]
     (let [str-length (.length s)]
         (cond
             (= 0 str-length) []
@@ -19,9 +19,9 @@
                     (recur s (conj t 0) last-match-idx 0)
                     (recur s (conj t 0) 0 0)))))))
 
-(defn kmp-search ([s target]
+(defn kmp-search ([^String s ^String target]
         (kmp-search [s target] (backtrack-table s) 0 0))
-        ([strings table m i]
+        ([strings table ^Long m ^Long i]
             (let [
                 [^String s ^String target] strings
                 s-size (.length s)

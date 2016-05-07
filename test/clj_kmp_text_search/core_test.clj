@@ -21,3 +21,10 @@
         (is (= -1 (kmp-search "eric" "joe"))))
     (testing "Back tracking"
         (is (= 10 (kmp-search "jo joanna joe jolene" "joe")))))
+
+(def large-string (str (take 10000 (repeatedly (fn [] "a")))))
+
+(deftest test-performance
+    (testing "Large strings"
+        (is (= 0 (kmp-search large-string large-string))
+        (is (= -1 (kmp-search (str large-string "b") (str large-string "c")))))))
